@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container page-content">
+
+    <h2 class="text-center mb-5">
+        My Cart
+    </h2>
+
+    <div class="card">
+
+        <div class="card-header bg-danger text-white">
+            Shopping Cart
+        </div>
+
+        <div class="card-body">
+
+            {% if cart_items %}
+
+                <table class="table table-bordered">
+
+                    <thead>
+
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for item in cart_items %}
+
+                        <tr>
+
+                            <td>{{ item.product.name }}</td>
+
+                            <td>{{ item.product.category }}</td>
+
+                            <td>₹{{ item.product.price }}</td>
+
+                            <td>
+
+    <a href="/decrease/{{ item.id }}/"
+       class="btn btn-sm btn-danger">
+       -
+    </a>
+
+    <strong class="mx-2">
+        {{ item.quantity }}
+    </strong>
+
+    <a href="/increase/{{ item.id }}/"
+       class="btn btn-sm btn-success">
+       +
+    </a>
+
+</td>
+
+                            
+
+                            <td>
+
+                              <a href="/remove-cart/{{ item.id }}/"
+                                 class="btn btn-danger btn-sm">
+                                        Remove
+                             </a>
+
+                            </td>
+
+                        </tr>
+                        
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+                <a href="/checkout/" class="btn btn-success">
+                    Checkout
+                </a>
+
+                <a href="/clear-cart/"
+                   class="btn btn-secondary">
+                    Clear Cart
+                </a>
+                <h4 class="mt-3">
+                  Total Amount: ₹{{ total }}
+                </h4>
+
+            {% else %}
+
+                <h5>Your cart is empty.</h5>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

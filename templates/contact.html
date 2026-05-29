@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container page-content">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-5">
+
+            <h2 class="text-center mb-4">
+                Contact Us
+            </h2>
+
+            {% if success %}
+            <div class="alert alert-success">
+                Message sent successfully.
+            </div>
+            {% endif %}
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           placeholder="Full Name"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           placeholder="Email"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <textarea name="message"
+                              class="form-control"
+                              rows="4"
+                              placeholder="How Can I Help You?"
+                              required></textarea>
+                </div>
+
+                <div class="text-center">
+
+                    <button type="submit"
+                            class="btn btn-dark">
+                        Submit
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container page-content">
+
+    <h2 class="text-center mb-4">
+        Checkout
+    </h2>
+
+    {% if error %}
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    {% if success %}
+    <div class="alert alert-success">
+        Order placed successfully.
+    </div>
+    {% endif %}
+
+    <div class="card p-4">
+
+        <h4 class="text-success mb-4">
+            Total Amount: ₹{{ total }}
+        </h4>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <textarea
+                name="address"
+                class="form-control mb-3"
+                placeholder="Address"
+                required></textarea>
+
+            <input
+                type="text"
+                name="city"
+                class="form-control mb-3"
+                placeholder="City"
+                required>
+
+            <input
+                type="text"
+                name="phone"
+                class="form-control mb-3"
+                placeholder="Phone Number"
+                required>
+
+            <button
+                type="submit"
+                class="btn btn-success">
+                Place Order
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

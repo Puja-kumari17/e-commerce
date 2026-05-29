@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 pt-5">
+
+    <h2 class="text-center mb-4">
+        Check Our Products
+    </h2>
+
+    <form method="GET" class="mb-4">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search Products">
+
+    </form>
+
+    <div class="row">
+
+        {% for product in products %}
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow h-100">
+
+                <img src="{{ product.image.url }}"
+                     class="card-img-top"
+                     height="250">
+
+                <div class="card-body text-center">
+
+                    <h5>{{ product.name }}</h5>
+
+                    <p>{{ product.category }}</p>
+
+                    <h6>₹{{ product.price }}</h6>
+
+                    <p>{{ product.description|truncatechars:50 }}</p>
+
+                    <a href="/add-to-cart/{{ product.id }}/"
+                       class="btn btn-danger">
+                        Add To Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12 text-center">
+
+            <h4>No Products Found</h4>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
